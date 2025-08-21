@@ -44,7 +44,14 @@ export async function handleApiError(error: unknown): Promise<string> {
   }
   return "An unknown error occurred"
 }
-
+export async function newName(): Promise<string> {
+  const response = await fetch("/api/new-name")
+  if (!response.ok) {
+    throw new Error("Failed to fetch new name")
+  }
+  const data = await response.json()
+  return data.name || "New Name"
+}
 // Debounce function
 export function debounce<T extends (...args: any[]) => any>(func: T, wait: number): (...args: Parameters<T>) => void {
   let timeout: ReturnType<typeof setTimeout> | null = null
