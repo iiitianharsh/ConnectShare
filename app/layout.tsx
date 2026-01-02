@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import Header from "@/components/header"
+import Footer from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 import { WebRTCProvider } from "@/contexts/WebRTCContext";
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   title: "ConnectShare - P2P File Sharing",
   description: "Direct peer-to-peer file sharing using WebRTC technology",
   keywords: ["file sharing", "p2p", "webrtc", "peer-to-peer"],
-  authors: [{ name: "ConnectShare Team" }],
+  authors: [{ name: "Harsh Jaiswal" }],
 };
 export const viewport = "width=device-width, initial-scale=1";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
           <div className="relative flex min-h-screen flex-col">
             <Header />
             <main className="flex-1">{children}</main>
+            <Footer />
           </div>
           </WebRTCProvider>
           <Toaster />

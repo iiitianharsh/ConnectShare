@@ -42,21 +42,21 @@ export default function Home() {
       title: "Share Files",
       description: "Easily share files with peers directly from your browser",
       link: "/share",
-      gradient: "from-blue-500 to-cyan-500",
+      gradient: "from-violet-500 to-purple-600",
     },
     {
       icon: <Download className="h-10 w-10" />,
       title: "Receive Files",
       description: "Receive files from connected peers securely",
       link: "/receive",
-      gradient: "from-green-500 to-emerald-500",
+      gradient: "from-purple-600 to-indigo-600",
     },
     {
       icon: <Users className="h-10 w-10" />,
       title: "Discover Peers",
       description: "Find and connect with peers on your network",
       link: "/peers",
-      gradient: "from-purple-500 to-pink-500",
+      gradient: "from-indigo-600 to-blue-600",
     },
   ]
 
@@ -70,9 +70,9 @@ export default function Home() {
   return (
     <div className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
       </div>
 
       <div className="container px-4 py-16 md:py-24">
@@ -160,6 +160,8 @@ export default function Home() {
               >
                 Direct peer-to-peer file sharing using{" "}
                 <span className="text-primary font-semibold">WebRTC</span>.{" "}
+                <span className="text-primary font-semibold">Serverless</span> architecture with{" "}
+                <span className="text-primary font-semibold">CDN</span> deployment.
                 <br className="hidden md:block" />
                 No servers, no limits, just seamless connections.
               </motion.p>
