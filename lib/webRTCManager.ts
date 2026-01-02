@@ -91,9 +91,14 @@ class WebRTCManager {
     let signalingUrlBase: string;
 
     const forceLocalSignaling = process.env.NEXT_PUBLIC_FORCE_LOCAL_SIGNALING === 'true';
+    
+    console.log('[WebRTCManager] Environment check:');
+    console.log('  - NODE_ENV:', process.env.NODE_ENV);
+    console.log('  - NEXT_PUBLIC_FORCE_LOCAL_SIGNALING:', process.env.NEXT_PUBLIC_FORCE_LOCAL_SIGNALING);
+    console.log('  - forceLocalSignaling:', forceLocalSignaling);
 
     if (process.env.NODE_ENV === 'development' && forceLocalSignaling) {
-      signalingUrlBase = `ws://localhost:3000/api/signaling`;
+      signalingUrlBase = `ws://localhost:8000/api/signaling`;
         console.log("Using LOCAL signaling server.");
     } else {
         const workerUrl = process.env.NEXT_PUBLIC_CF_WORKER_URL;
@@ -108,12 +113,27 @@ class WebRTCManager {
     }
     const signalingUrl = `${signalingUrlBase}/?name=${encodeURIComponent(name)}`; 
 
-    console.log(`[WebRTCManager] Attempting to connect to CF Worker signaling: ${signalingUrl}`);
+    console.log(`[WebRTCManager] Attempting to connect to signaling: ${signalingUrl}`);
     this.ws = new WebSocket(signalingUrl);
 
     this.ws.onopen = () => {
-      console.log('[WebRTCManager] Signaling WebSocket connected to CF Worker.');
+      console.log('[WebRTCManager] Signaling WebSocket connected successfully.');
     };
+
+    this.ws.onerror = (errorEvent) => {
+      console.error('[WebRTCManager] Signaling WebSocket error:', errorEvent);
+      console.error('[WebRTCManager] WebSocket readyState:', this.ws?.readyState);
+      console.error('[WebRTCManager] WebSocket URL:', signalingUrl);
+    };
+
+    // Add timeout to detect connection issues
+    setTimeout(() => {
+      if (this.ws && this.ws.readyState === WebSocket.CONNECTING) {
+        console.error('[WebRTCManager] WebSocket connection timeout - still in CONNECTING state');
+        console.error('[WebRTCManager] WebSocket URL:', signalingUrl);
+        console.error('[WebRTCManager] ReadyState:', this.ws.readyState);
+      }
+    }, 5000);
 
     this.ws.onmessage = async (event) => {
       const messageString = event.data as string;

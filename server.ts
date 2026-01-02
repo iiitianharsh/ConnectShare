@@ -8,7 +8,7 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 
 
 const peers = new Map();
@@ -44,12 +44,16 @@ app.prepare().then(() => {
 
   httpServer.on('upgrade', (request: any, socket: any, head: any) => {
     const { pathname } = parse(request.url!, true);
+    console.log(`[Server] WebSocket upgrade request for pathname: ${pathname}`);
 
-    if (pathname === '/api/signaling') { 
+    if (pathname === '/api/signaling' || pathname === '/api/signaling/') { 
+      console.log('[Server] Handling WebSocket upgrade for /api/signaling');
       wss.handleUpgrade(request, socket, head, (ws: any) => { 
         wss.emit('connection', ws, request);
       });
-    } else {}
+    } else {
+      console.log(`[Server] Rejecting WebSocket upgrade for pathname: ${pathname}`);
+    }
   });
 
   wss.on('connection', (ws: any, request: any) => { 

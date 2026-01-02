@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+</head>
+<body>
+    <h1>WebSocket Connection Test</h1>
+    <button onclick="testWebSocket()">Test WebSocket Connection</button>
+    <div id="output"></div>
+
+    <script>
+        function testWebSocket() {
+            const output = document.getElementById('output');
+            output.innerHTML = 'Testing WebSocket connection...';
+            
+            try {
+                console.log('Attempting WebSocket connection to: ws://localhost:8000/api/signaling?name=test');
+                const ws = new WebSocket('ws://localhost:8000/api/signaling?name=test');
+                
+                ws.onopen = () => {
+                    console.log('WebSocket connected successfully');
+                    output.innerHTML += '<br>✅ WebSocket connected successfully';
+                    ws.close();
+                };
+                
+                ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                    output.innerHTML += '<br>❌ WebSocket error: ' + error;
+                };
+                
+                ws.onclose = () => {
+                    console.log('WebSocket connection closed');
+                    output.innerHTML += '<br>🔌 WebSocket connection closed';
+                };
+                
+                ws.onmessage = (event) => {
+                    console.log('Received message:', event.data);
+                    output.innerHTML += '<br>📨 Received: ' + event.data;
+                };
+                
+                // Timeout after 5 seconds
+                setTimeout(() => {
+                    if (ws.readyState === WebSocket.CONNECTING) {
+                        console.error('WebSocket connection timeout');
+                        output.innerHTML += '<br>⏰ WebSocket connection timeout';
+                        ws.close();
+                    }
+                }, 5000);
+                
+            } catch (error) {
+                console.error('Error creating WebSocket:', error);
+                output.innerHTML += '<br>❌ Error creating WebSocket: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
