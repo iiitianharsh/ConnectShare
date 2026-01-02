@@ -2,11 +2,6 @@
 
 ConnectShare is a modern, serverless peer-to-peer (P2P) file sharing application that allows users to transfer files directly between browsers without needing to upload them to a central server. It leverages **WebRTC** for direct communication and a **Cloudflare Worker** for signaling, ensuring fast, private, and secure file transfers.
 
-## Live Demo
-
-Experience ConnectShare live at: **[https://connect-share-delta.vercel.app/](https://connect-share-delta.vercel.app/)**
-
------
 
 ## Features
 
