@@ -39,7 +39,7 @@ To get a local copy up and running, follow these simple steps.
 #### 1\. Clone the Repository
 
 ```bash
-git clone https://github.com/Vishwa1011-AFK/ConnectShare.git
+git clone [https://github.com/iiitianharsh/ConnectShare.git]
 cd ConnectShare
 ```
 
@@ -76,4 +76,4 @@ The signaling server runs on a Cloudflare Worker. You will need to deploy it sep
 npm run dev
 ```
 
-Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) with your browser to see the result. You can open it in two different browser tabs or on two different devices on the same network to test the P2P connection.
+Open [http://localhost:8000](https://www.google.com/search?q=http://localhost:8000) with your browser to see the result. You can open it in two different browser tabs or on two different devices on the same network to test the P2P connection.
