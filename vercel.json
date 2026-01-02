@@ -1,0 +1,1 @@
+{"buildCommand": "npm run build", "outputDirectory": ".next", "installCommand": "npm install", "framework": "nextjs", "env": {"NEXT_PUBLIC_CF_WORKER_URL": "wss://connectshare-signaling.2003harshjais.workers.dev", "NEXT_PUBLIC_FORCE_LOCAL_SIGNALING": "false"}}
