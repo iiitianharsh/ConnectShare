@@ -17,7 +17,7 @@ const fontSans = FontSans({
 export const metadata: Metadata = {
   title: "ConnectShare - P2P File Sharing",
   description: "Direct peer-to-peer file sharing using WebRTC technology",
-  keywords: ["file sharing", "p2p", "webrtc", "peer-to-peer"],
+  keywords: ["file sharing", "p2p", "webrtc", "peer-to-peer", "CDN"],
   authors: [{ name: "Harsh Jaiswal" }],
 };
 export const viewport = "width=device-width, initial-scale=1";
