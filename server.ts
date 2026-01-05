@@ -29,6 +29,7 @@ function broadcast(message: any, excludeId?: string) {
   peers.forEach(peer => {
     if (peer.id !== excludeId && peer.ws.readyState === WebSocket.OPEN) {
       peer.ws.send(messageString);
+      console.log(messageString)
     }
   });
 }
@@ -45,7 +46,7 @@ app.prepare().then(() => {
   httpServer.on('upgrade', (request: any, socket: any, head: any) => {
     const { pathname } = parse(request.url!, true);
     console.log(`[Server] WebSocket upgrade request for pathname: ${pathname}`);
-
+    console.log('Server request');
     if (pathname === '/api/signaling' || pathname === '/api/signaling/') { 
       console.log('[Server] Handling WebSocket upgrade for /api/signaling');
       wss.handleUpgrade(request, socket, head, (ws: any) => { 
